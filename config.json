@@ -44,11 +44,6 @@
         "type": "Author",
         "author": "MCMrARM",
         "url": "https://github.com/minecraft-linux/"
-    },
-    {
-        "type": "AppImage Maintainer",
-        "author": "E5ten",
-        "url": "https://github.com/E5ten"
     }
     ]
 }
