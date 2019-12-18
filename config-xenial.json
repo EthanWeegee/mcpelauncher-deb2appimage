@@ -3,17 +3,20 @@
     {
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp ./mcpelauncher-ui-qt.startme ~/.cache/deb2appimage/AppDir/usr/bin/",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/mcpelauncher-client/mcpelauncher-client_20191030-220559-eb0bc83~xenial_i386.deb -o ~/.cache/deb2appimage/debs/mcpelauncher-client.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/mcpelauncher-ui-qt/mcpelauncher-ui-qt_20191030-220712-98ac412~xenial_amd64.deb -o ~/.cache/deb2appimage/debs/mcpelauncher-ui-qt.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/msa-daemon/msa-daemon_20191030-220539-cc72517~xenial_amd64.deb -o ~/.cache/deb2appimage/debs/msa-daemon.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/msa-ui-qt/msa-ui-qt_20191030-220539-cc72517~xenial_amd64.deb -o ~/.cache/deb2appimage/debs/msa-ui-qt.deb",
-            "curl -sS http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.15_i386.deb -o ~/.cache/deb2appimage/debs/libssl1.0.0_i386.deb"
+            "wget --no-verbose http://mcpelauncher.mrarm.io/apt/ubuntu/dists/xenial/main/binary-i386/Packages -O ~/.cache/deb2appimage/Packages-i386",
+            "wget --no-verbose http://mcpelauncher.mrarm.io/apt/ubuntu/dists/xenial/main/binary-amd64/Packages -O ~/.cache/deb2appimage/Packages-amd64",
+            "for debs in $(cat ~/.cache/deb2appimage/Packages-i386 | grep pool/main/m/ | sed 's/Filename: //'); do echo http://mcpelauncher.mrarm.io/apt/ubuntu/$debs >> ~/.cache/deb2appimage/debs-i386; done",
+            "for debs in $(cat ~/.cache/deb2appimage/Packages-amd64 | grep pool/main/m/ | sed 's/Filename: //'); do echo http://mcpelauncher.mrarm.io/apt/ubuntu/$debs >> ~/.cache/deb2appimage/debs-amd64; done",
+            "wget --no-verbose -i ~/.cache/deb2appimage/debs-i386 -P ~/.cache/deb2appimage/debs/",
+            "wget --no-verbose -i ~/.cache/deb2appimage/debs-amd64 -P ~/.cache/deb2appimage/debs/",
+            "wget --no-verbose http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.15_i386.deb -P ~/.cache/deb2appimage/debs/",
+            "rm ~/.cache/deb2appimage/debs/mcpelauncher-server*.deb",
+            "cp ./mcpelauncher-ui-qt.startme ~/.cache/deb2appimage/AppDir/usr/bin"
         ],
         "name": "mcpelauncher",
         "version": "xenial-20191030",
         "deps": "libasn1-8-heimdal,libcurl3,libcurl4-openssl-dev,libgnutls30,libgssapi3-heimdal,libhcrypto4-heimdal,libheimbase1-heimdal,libheimntlm0-heimdal,libhogweed4,libhx509-5-heimdal,libkrb5-26-heimdal,libldap-2.4-2,libnettle6,libnss3,libprotobuf9v5,libroken18-heimdal,librtmp1,libsasl2-2,libssl1.0.0,libwind0-heimdal,libzip4",
-        "repoarch": "amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64",
+        "repoarch": "amd64",
         "distrorepo": "Ubuntu",
         "repoversion": "xenial",
         "binarypath": "/usr/bin/mcpelauncher-ui-qt.startme",

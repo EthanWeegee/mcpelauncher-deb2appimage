@@ -3,11 +3,14 @@
     {
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp ./mcpelauncher-ui-qt.startme ~/.cache/deb2appimage/AppDir/usr/bin/",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/mcpelauncher-client/mcpelauncher-client_20191030-221045-eb0bc83_i386.deb -o ~/.cache/deb2appimage/debs/mcpelauncher-client.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/mcpelauncher-ui-qt/mcpelauncher-ui-qt_20191030-221112-98ac412_amd64.deb -o ~/.cache/deb2appimage/debs/mcpelauncher-ui-qt.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/msa-daemon/msa-daemon_20191030-221024-cc72517_amd64.deb -o ~/.cache/deb2appimage/debs/msa-daemon.deb",
-            "curl -sS http://mcpelauncher.mrarm.io/apt/ubuntu/pool/main/m/msa-ui-qt/msa-ui-qt_20191030-221024-cc72517_amd64.deb -o ~/.cache/deb2appimage/debs/msa-ui-qt.deb"
+            "wget --no-verbose http://mcpelauncher.mrarm.io/apt/ubuntu/dists/bionic/main/binary-i386/Packages -O ~/.cache/deb2appimage/Packages-i386",
+            "wget --no-verbose http://mcpelauncher.mrarm.io/apt/ubuntu/dists/bionic/main/binary-amd64/Packages -O ~/.cache/deb2appimage/Packages-amd64",
+            "for debs in $(cat ~/.cache/deb2appimage/Packages-i386 | grep pool/main/m/ | sed 's/Filename: //'); do echo http://mcpelauncher.mrarm.io/apt/ubuntu/$debs >> ~/.cache/deb2appimage/debs-i386; done",
+            "for debs in $(cat ~/.cache/deb2appimage/Packages-amd64 | grep pool/main/m/ | sed 's/Filename: //'); do echo http://mcpelauncher.mrarm.io/apt/ubuntu/$debs >> ~/.cache/deb2appimage/debs-amd64; done",
+            "wget --no-verbose -i ~/.cache/deb2appimage/debs-i386 -P ~/.cache/deb2appimage/debs/",
+            "wget --no-verbose -i ~/.cache/deb2appimage/debs-amd64 -P ~/.cache/deb2appimage/debs/",
+            "rm ~/.cache/deb2appimage/debs/mcpelauncher-server*.deb",
+            "cp ./mcpelauncher-ui-qt.startme ~/.cache/deb2appimage/AppDir/usr/bin"
         ],
         "name": "mcpelauncher",
         "version": "bionic-20191030",
