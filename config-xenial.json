@@ -14,7 +14,7 @@
             "cp ./mcpelauncher-ui-qt.startme ~/.cache/deb2appimage/AppDir/usr/bin"
         ],
         "name": "mcpelauncher",
-        "version": "xenial-20191030",
+        "version": "xenial-20191224",
         "deps": "libasn1-8-heimdal,libcurl3,libcurl4-openssl-dev,libgnutls30,libgssapi3-heimdal,libhcrypto4-heimdal,libheimbase1-heimdal,libheimntlm0-heimdal,libhogweed4,libhx509-5-heimdal,libkrb5-26-heimdal,libldap-2.4-2,libnettle6,libnss3,libprotobuf9v5,libroken18-heimdal,librtmp1,libsasl2-2,libssl1.0.0,libwind0-heimdal,libzip4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",
