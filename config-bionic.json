@@ -14,7 +14,7 @@
         ],
         "name": "mcpelauncher",
         "version": "bionic-20191224",
-        "deps": "libasn1-8-heimdal,libcurl4,libgssapi3-heimdal,libhcrypto4-heimdal,libheimbase1-heimdal,libheimntlm0-heimdal,libhx509-5-heimdal,libkrb5-26-heimdal,libkrb5-3,libldap-2.4-2,libnss3,libprotobuf10,libroken18-heimdal,libsasl2-2,libzip4,libwind0-heimdal",
+        "deps": "libasn1-8-heimdal,libgssapi3-heimdal,libhcrypto4-heimdal,libheimbase1-heimdal,libheimntlm0-heimdal,libhx509-5-heimdal,libkrb5-26-heimdal,libkrb5-3,libldap-2.4-2,libnss3,libprotobuf10,libroken18-heimdal,libsasl2-2,libwind0-heimdal,libzip4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",
         "repoversion": "bionic",
