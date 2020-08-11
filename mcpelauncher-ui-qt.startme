@@ -1,5 +1,5 @@
 #!/bin/bash
 msa-daemon &
 mcpelauncher-ui-qt
-killall msa-daemon
+kill $!
 exit
